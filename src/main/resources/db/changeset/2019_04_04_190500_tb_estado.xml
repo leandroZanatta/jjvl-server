@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd  http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="2019_04_04_190500" author="leandro" logicalFilePath="2019_04_04_190500_tb_estado.xml">
+
+		<preConditions onFail="CONTINUE">
+			<not>
+				<tableExists tableName="tb_estados" />
+			</not>
+		</preConditions>
+
+		<createTable tableName="tb_estados">
+
+			<column name="id_estado" type="NUMBER(18,0)" remarks="CÓDIGO INDENTIFICADOR">
+				<constraints primaryKey="true" primaryKeyName="estado_pk" nullable="false" />
+			</column>
+
+			<column name="tx_descricao" type="VARCHAR(100)" remarks="DESCRIÇÃO DO ESTADO">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="tx_uf" type="VARCHAR(3)" remarks="UF DO ESTADO">
+				<constraints nullable="false" />
+			</column>
+
+		</createTable>
+	</changeSet>
+
+
+
+</databaseChangeLog>

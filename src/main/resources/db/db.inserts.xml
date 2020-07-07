@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd  http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	
+	<changeSet id="carga_tb_estados" author="leandro">
+		<insert tableName="tb_estados">
+			<column name="id_estado" value="24" />
+			<column name="tx_descricao" value="Santa Catarina" />
+			<column name="tx_uf" value="SC" />
+		</insert>
+	</changeSet>
+
+	<changeSet id="carga_tb_cidades" author="leandro">
+		<insert tableName="tb_cidades">
+			<column name="id_cidade" value="4491" />
+			<column name="cd_estado" value="24" />
+			<column name="tx_descricao" value="Descanso" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

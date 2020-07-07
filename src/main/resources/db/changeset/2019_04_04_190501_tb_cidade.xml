@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd  http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="2019_04_04_190501" author="leandro" logicalFilePath="2019_04_04_190501_tb_cidade.xml">
+		<preConditions onFail="CONTINUE">
+			<not>
+				<tableExists tableName="tb_cidades" />
+			</not>
+		</preConditions>
+
+		<createTable tableName="tb_cidades">
+
+			<column name="id_cidade" type="NUMBER(18,0)" remarks="CÓDIGO INDENTIFICADOR">
+				<constraints primaryKey="true" primaryKeyName="cidade_pk" nullable="false" />
+			</column>
+
+			<column name="cd_estado" type="NUMBER(18,0)" remarks="CÓDIGO DO ESTADO">
+				<constraints nullable="false" foreignKeyName="cidade_estado_fk" references="tb_estados(id_estado)" />
+			</column>
+
+			<column name="tx_descricao" type="VARCHAR(100)" remarks="DESCRIÇÃO DO ESTADO">
+				<constraints nullable="false" />
+			</column>
+
+		</createTable>
+
+		<createIndex indexName="idx_cidade_001" tableName="tb_cidades">
+			<column name="cd_estado" type="NUMERIC(18,0)" />
+		</createIndex>
+
+	</changeSet>
+
+
+</databaseChangeLog>

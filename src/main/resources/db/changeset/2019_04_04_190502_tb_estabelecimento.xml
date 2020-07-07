@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd  http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="2019_04_04_190502" author="leandro" logicalFilePath="2019_04_04_190502_tb_estabelecimento.xml">
+
+		<preConditions onFail="CONTINUE">
+			<not>
+				<tableExists tableName="tb_estabelecimento" />
+			</not>
+		</preConditions>
+
+		<createTable tableName="tb_estabelecimento">
+
+			<column name="id_estabelecimento" type="NUMBER(18,0)" remarks="CÓDIGO INDENTIFICADOR">
+				<constraints primaryKey="true" primaryKeyName="estabelecimento_pk" nullable="false" />
+			</column>
+
+			<column name="cd_cidade" type="NUMBER(18,0)" remarks="ID DA CIDADE TB_CIDADES">
+				<constraints nullable="false" foreignKeyName="estabelecimento_cidade_fk" references="tb_cidades(id_cidade)" />
+			</column>
+
+			<column name="tx_cnpj" type="VARCHAR(18)" remarks="CNPJ DO ESTABELECIMENTO">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="tx_nomefantasia" type="VARCHAR(100)" remarks="NOME FANTASIA DA EMPRESA">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="tx_endereco" type="VARCHAR(100)" remarks="ENDEREÇO">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="tx_numero" type="VARCHAR(100)" remarks="NÚMERO">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="tx_bairro" type="VARCHAR(50)" remarks="BAIRRO">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="tx_senha" type="VARCHAR(40)" remarks="MD5 DA SENHA">
+				<constraints nullable="false" />
+			</column>
+
+		</createTable>
+
+		<createSequence sequenceName="gen_estabelecimento" />
+
+		<createIndex indexName="idx_estabelecimento_001" tableName="tb_estabelecimento" unique="true">
+			<column name="tx_cnpj" type="VARCHAR(18)" />
+			<column name="tx_senha" type="VARCHAR(40)" />
+		</createIndex>
+
+		<createIndex indexName="idx_estabelecimento_002" tableName="tb_estabelecimento" unique="true">
+			<column name="tx_cnpj" type="VARCHAR(18)" />
+		</createIndex>
+
+	</changeSet>
+
+
+
+</databaseChangeLog>
